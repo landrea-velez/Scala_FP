@@ -3,53 +3,53 @@ package co.com.scalatraining
 import org.scalatest.FunSuite
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
-class SyntaxSuite extends FunSuite{
+class SyntaxSuite extends FunSuite {
 
-  test("Un var debe permitir realizar asignaciones"){
+  test("Un var debe permitir realizar asignaciones") {
     var x = 0
     assert(x == 0)
     x = 2
     assert(x == 2)
   }
 
-  test("Un val no debe permitir realizar asignaciones"){
+  test("Un val no debe permitir realizar asignaciones") {
     val x = 0
     assert(x == 0)
     assertDoesNotCompile("x = 1")
   }
 
-  test("Los tipos en Scala son iferidos por el compilador"){
+  test("Los tipos en Scala son iferidos por el compilador") {
     // Fijate como no hay que decir de qué tipo es x
     val x = 0
     assert(x == 0)
 
     // Aunque tambien lo puedes hacer explicito si asi lo quieres
-    val y= "0"
+    val y = "0"
     assert(y == "0")
 
     // Si eres incredulo fijate como el tipo es fuerte y no debil
     var strong = "0"
 
-    assertDoesNotCompile ("strong = 1")
+    assertDoesNotCompile("strong = 1")
   }
 
-  test("Scala no debe permitir iniciar en null"){
+  test("Scala no debe permitir iniciar en null") {
     var x: Null = null
     assertDoesNotCompile("x = 1")
   }
 
-  test("Scala no debe permitir declarar sin asignar"){
+  test("Scala no debe permitir declarar sin asignar") {
     assertDoesNotCompile("var x")
   }
 
-  test("Un object puede tener funciones miembro"){
+  test("Un object puede tener funciones miembro") {
 
     object obj {
 
       var x = 1
       val y = 0
 
-      def f1(a: Int, b:Int):Int = {
+      def f1(a: Int, b: Int): Int = {
         x = x + 1
         a + x
       }
@@ -65,11 +65,12 @@ class SyntaxSuite extends FunSuite{
     assert(res == 3)
   }
 
-  test("Un class se puede comoportar como un class tradicional"){
+  test("Un class se puede comoportar como un class tradicional") {
 
     //los parametros de contruccion se definen entre parentesis a continuacion del nombre de la clase
-    class MyClass(a:Int){
+    class MyClass(a: Int) {
       def f1 = a + 1
+
       def f2 = a + 2
 
     }
@@ -82,10 +83,10 @@ class SyntaxSuite extends FunSuite{
     assert(mc != mc2)
   }
 
-  test("A un class se le puede  mutar su estado"){
+  test("A un class se le puede  mutar su estado") {
 
     //los parametros de contruccion se definen entre parentesis a continuacion del nombre de la clase
-    class MyClass(a:Int){
+    class MyClass(a: Int) {
 
       var r = 0
 
@@ -109,10 +110,10 @@ class SyntaxSuite extends FunSuite{
     assert(mc.r == 4)
   }
 
-  test("Un case es una clase normal para usos especificos"){
+  test("Un case es una clase normal para usos especificos") {
 
-    case class MyCaseClass(a:Int, b:Int) {
-      def f1(a:Int) = a + 1
+    case class MyCaseClass(a: Int, b: Int) {
+      def f1(a: Int) = a + 1
     }
 
     // Se puede instanciar de forma normal
@@ -120,7 +121,7 @@ class SyntaxSuite extends FunSuite{
     assert(mcc1.f1(1) == 2)
 
     // Se puede instanciar sin new
-    val mcc2 = MyCaseClass(1,2)
+    val mcc2 = MyCaseClass(1, 2)
     println(s"mcc: ${mcc2}")
 
     assert(mcc2.f1(1) == 2)
@@ -131,30 +132,31 @@ class SyntaxSuite extends FunSuite{
 
   }
 
-  test("Un trait puede tener solo definiciones"){
+  test("Un trait puede tener solo definiciones") {
     trait MyTrait {
-      def f1(a:Int):Boolean
+      def f1(a: Int): Boolean
     }
 
-    trait MySecondTrait{
-      def f2(a:String):Int
+    trait MySecondTrait {
+      def f2(a: String): Int
     }
 
-    class MyClass extends MyTrait with MySecondTrait{
-      override def f1(a:Int) = ???
-      override def f2(a:String) = ???
+    class MyClass extends MyTrait with MySecondTrait {
+      override def f1(a: Int) = ???
+
+      override def f2(a: String) = ???
     }
 
-    assertThrows[NotImplementedError]{
+    assertThrows[NotImplementedError] {
       val mc = new MyClass
       mc.f1(1)
     }
 
   }
 
-  test("Un trait puede tener tambien implementaciones"){
+  test("Un trait puede tener tambien implementaciones") {
     trait MyTrait {
-      def f1(a:Int) = a + 1
+      def f1(a: Int) = a + 1
     }
 
     class MyClass extends MyTrait
@@ -164,13 +166,14 @@ class SyntaxSuite extends FunSuite{
     assert(res == 2)
   }
 
-  test("Un trait puede tener tambien implementaciones 2"){
+  test("Un trait puede tener tambien implementaciones 2") {
     trait MyTrait {
-      def f1(a:Int) = a + 1
+      def f1(a: Int) = a + 1
     }
 
     object my_obj extends MyTrait {
-      override def f1(a:Int) = a + 1
+      override def f1(a: Int) = a + 1
+
       val res = f1(1)
 
       assert(res == 2)
@@ -178,40 +181,22 @@ class SyntaxSuite extends FunSuite{
   }
 
 
-  test("Pattern matching"){
-    case class Profesor(nombre:String)
-    case class Curso(nombre:String, p:Profesor)
+  test("Pattern matching") {
+    case class Profesor(nombre: String)
+    case class Curso(nombre: String, p: Profesor)
 
     val c1 = Curso("Scala", Profesor("JP"))
 
     c1 match {
-      case x:Curso if x.p.nombre != "JP"=> {
-        assert(x.nombre=="Scala")
-        assert(x.p==Profesor("JP"))
+      case x: Curso if x.p.nombre != "JP" => {
+        assert(x.nombre == "Scala")
+        assert(x.p == Profesor("JP"))
       }
-      case Curso(n,p) if p.nombre == "JP" => {
+      case Curso(n, p) if p.nombre == "JP" => {
         println("Pasa?")
-        assert(n=="Scala")
-        assert(p==Profesor("JP"))
+        assert(n == "Scala")
+        assert(p == Profesor("JP"))
       }
-    }
-
-  }
-
-  test("verificacion de unapply"){
-    class Profesor(nombre:String)
-
-    object Profesor{
-      def unapply(arg: Profesor): Option[String] = Some("NOMBRE-FIJO")
-    }
-
-    new Profesor("JP") match{
-      case Profesor(n) => {
-        assert(n != "JP")
-        assert(n=="NOMBRE-FIJO")
-      }
-
-
     }
   }
 
