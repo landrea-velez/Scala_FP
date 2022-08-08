@@ -47,9 +47,11 @@ class ListSuite extends FunSuite {
 
 
   test("A una lista se le debe poder adicionar elementos"){
-    val l1 = List(1,2,3)
-    val l2 = 4::l1
-    assert(l2 == List(4,1,2,3))
+    var l1 = List(1,2,3)
+
+    l1 = 4::l1
+
+    assert(l1 == List(4,1,2,3))
   }
 
 
