@@ -1,7 +1,8 @@
 /**
  * Aunque los Traits son similares a las clases,
  * se suele preferir en Scala para agrupar código.
- * En vez que tener funciones sueltas, normalmente las agruparemos dentro de Traits.
+ * En vez que tener funciones sueltas,
+ * normalmente las agruparemos dentro de Traits.
  *
  * También se puede definir un trait usando la palabra
  * sealed trait .

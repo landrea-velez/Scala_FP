@@ -1,7 +1,6 @@
 /**
  * Definición de tipos en Scala
  * Class
- * Class
  * Case Class
  * Trait
  * Type alias

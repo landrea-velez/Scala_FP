@@ -5,7 +5,6 @@ import org.scalatest.{Matchers, FunSuite}
 class Currying extends FunSuite with Matchers{
 
   test("Una funcion puede recibir mas de un parametro gracias al currying"){
-    //Esta es una función curreada
     def f(a:Int)(b:Int) ={
       a+b
     }

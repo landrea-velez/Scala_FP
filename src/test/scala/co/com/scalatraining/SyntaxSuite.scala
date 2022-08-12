@@ -39,6 +39,7 @@ class SyntaxSuite extends FunSuite {
   }
 
   test("Scala no debe permitir declarar sin asignar") {
+    //var x
     assertDoesNotCompile("var x")
   }
 

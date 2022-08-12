@@ -1,3 +1,11 @@
+/**
+ * Los tipos de datos genéricos se comportan como
+ * un comodín. Permiten tener certeza de un dato
+ * pero sin saber cuál es aún
+ *
+ * Pero ya en tiempo de compilación se vuelven
+ * específicos*/
+
 def f[A](x: A): String = s"$x"
 
 f("laura")
