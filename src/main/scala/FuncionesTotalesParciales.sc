@@ -2,7 +2,7 @@
  * Hay que tener cuidado con funciones que no están
  * bien definidas o que son inseguras de usar por
  *  NO ser funciones totales EJ.
- * .gewt()
+ * .get()
  * .head()
  * .tail()
  * .last() */
